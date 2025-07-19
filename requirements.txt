@@ -1,0 +1,21 @@
+# Data Science Libraries
+pandas
+scikit-learn
+scipy
+matplotlib
+
+
+# Django for Web Development
+Django
+django-crispy-forms
+crispy-bootstrap5
+
+# Database (if you're using MySQL)
+mysqlclient
+
+# Deployment Tools
+gunicorn
+whitenoise
+
+
+
