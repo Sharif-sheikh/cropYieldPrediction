@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-0&=syg0#ae_1(jn$_2saa=+z%l$sz@=z7qz-ux&j3h7669i-=p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['cropyieldprediction-1-7eb0.onrender.com']
 
 
 # Application definition
