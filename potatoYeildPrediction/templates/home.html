@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html class="d-flex flex-column container-fluid">
   <head>
     <title>Potato Yield Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
       rel="stylesheet" />
@@ -10,12 +11,14 @@
         background-color: rgb(4, 24, 41);
         color: rgb(210, 220, 230);
       }
+
       .table-hover tbody tr:hover {
         background-color: rgba(255, 255, 255, 0.05);
       }
     </style>
   </head>
-  <body>
+
+  <body class="d-flex flex-column container-fluid mt-1 mb-1 min-vh-100">
     {% load crispy_forms_tags %}
 
     <!-- Navbar -->
@@ -34,7 +37,9 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link active" href="{% url 'potatoes' %}">Potatoes Data</a>
+              <a class="nav-link active" href="{% url 'potatoes' %}"
+                >Potatoes Data</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="{% url 'home' %}">Home</a>
@@ -56,7 +61,7 @@
         <div class="card-header">
           <h4>Single Year Prediction</h4>
         </div>
-        <div class="card-body">
+        <div class="card-body px-3 px-md-5 py-4">
           <form method="POST">
             {% csrf_token %}
             <input type="hidden" name="prediction_type" value="single" />
@@ -70,22 +75,24 @@
           {% if single_prediction %}
           <hr />
           <h5>Prediction Result:</h5>
-          <table class="table table-striped table-dark table-hover mt-3">
-            <thead>
-              <tr>
-                <th>Year</th>
-                <th>Predicted Yield</th>
-                <th>Unit (kg/ha)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{{ year }}</td>
-                <td>{{ single_prediction }}</td>
-                <td>kg/ha</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-striped table-dark table-hover mt-3">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Predicted Yield</th>
+                  <th>Unit (kg/ha)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ year }}</td>
+                  <td>{{ single_prediction }}</td>
+                  <td>kg/ha</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           {% endif %}
         </div>
       </div>
@@ -95,7 +102,7 @@
         <div class="card-header">
           <h4>Multiple Year Prediction</h4>
         </div>
-        <div class="card-body">
+        <div class="card-body px-3 px-md-5 py-4">
           <form method="POST">
             {% csrf_token %}
             <input type="hidden" name="prediction_type" value="range" />
@@ -125,24 +132,26 @@
           <h5 class="mt-3">
             Predictions from {{ start_year }} to {{ end_year }}:
           </h5>
-          <table class="table table-striped table-dark table-hover mt-3">
-            <thead>
-              <tr>
-                <th>Year</th>
-                <th>Predicted Yield</th>
-                <th>Unit (kg/ha)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for year, value in range_predictions %}
-              <tr>
-                <td>{{ year }}</td>
-                <td>{{ value }}</td>
-                <td>kg/ha</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-striped table-dark table-hover mt-3">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Predicted Yield</th>
+                  <th>Unit (kg/ha)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for year, value in range_predictions %}
+                <tr>
+                  <td>{{ year }}</td>
+                  <td>{{ value }}</td>
+                  <td>kg/ha</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
           {% endif %}
         </div>
       </div>
@@ -150,18 +159,19 @@
 
     <!-- Footer -->
     <footer class="bg-dark text-light text-center py-4 mt-5">
-        <div class="container">
-            <p class="mb-1">&copy; {% now "Y" %} Department of CSE, Begum Rokeya University, Rangpur</p>
-            {% comment %} <p class="mb-1">Developed by MD. Shorif Mia (CSE, BRUR)</p> {% endcomment %}
-            {% comment %} <p class="mb-1">
-                <a href="{% url 'home' %}" class="text-decoration-none text-light me-3">Home</a>
-                <a href="{% url 'about' %}" class="text-decoration-none text-light me-3">About</a>
-                <a href="https://github.com/Sharif-sheikh" class="text-info text-decoration-none" target="_blank">GitHub</a>
-            </p> {% endcomment %}
-            <small>Contact: <a href="mailto:shorif.12005011@student.brur.ac.bd" class="text-info">shorif.12005011@student.brur.ac.bd</a></small>
-        </div>
+      <div class="container">
+        <p class="mb-1">
+          &copy; {% now "Y" %} Department of CSE, Begum Rokeya University,
+          Rangpur
+        </p>
+        <small
+          >Contact:
+          <a href="mailto:shorif.12005011@student.brur.ac.bd" class="text-info">
+            shorif.12005011@student.brur.ac.bd
+          </a>
+        </small>
+      </div>
     </footer>
-    
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
